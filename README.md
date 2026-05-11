@@ -1,5 +1,7 @@
 # Slate Sphinx Theme
 
+[![Deploy example docs to GitHub Pages](https://github.com/ariuna-systems/slate-sphinx/actions/workflows/pages.yml/badge.svg)](https://github.com/ariuna-systems/slate-sphinx/actions/workflows/pages.yml)
+
 Sphinx theme package for documentation sites.
 
 ## Usage
@@ -12,7 +14,7 @@ For local development use following commands.
 
 ## Packaging
 
-Install the package locally or from a source archive:
+Install the package locally or from a source archive.
 
 ```shell
 uv pip install .
