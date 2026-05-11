@@ -55,28 +55,28 @@
 
 html[data-theme="dark"] {
   color-scheme: dark;
-  --slate-color-background: #252a31;
-  --slate-color-background-secondary: #2f343c;
+  --slate-color-background: #1a1e24;
+  --slate-color-background-secondary: #1e232a;
   --slate-color-background-tertiary: #383e47;
   --slate-color-surface: #2f343c;
   --slate-color-surface-raised: #2f343c;
-  --slate-color-surface-overlay: #383e47;
+  --slate-color-surface-overlay: #262b33;
   --slate-color-surface-sunken: #111418;
-  --slate-color-sidebar: #1c2127;
+  --slate-color-sidebar: #161a1f;
   --slate-color-text-primary: #f5f8fa;
   --slate-color-text-secondary: #a7b6c2;
   --slate-color-text-muted: #738694;
   --slate-color-text-link: #6aabf7;
   --slate-color-border: #404854;
-  --slate-color-border-light: #363d47;
+  --slate-color-border-light: #2c333d;
   --slate-color-border-strong: #5c6670;
   --slate-color-hover: rgba(255, 255, 255, 0.05);
   --slate-color-active: rgba(255, 255, 255, 0.1);
   --slate-color-selected: rgba(76, 144, 240, 0.15);
   --slate-color-focus-ring: rgba(76, 144, 240, 0.6);
-  --slate-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
-  --slate-shadow-base: 0 2px 10px rgba(0, 0, 0, 0.28);
-  --slate-shadow-lg: 0 18px 42px rgba(0, 0, 0, 0.36);
+  --slate-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.45);
+  --slate-shadow-base: 0 4px 14px rgba(0, 0, 0, 0.45);
+  --slate-shadow-lg: 0 18px 42px rgba(0, 0, 0, 0.55);
 }
 
 * {
@@ -563,7 +563,7 @@ samp {
   color: var(--slate-color-text-muted);
 }
 
-.slate-article .toctree-wrapper ul,
+.slate-article .toctree-wrapper > ul,
 .ariuna-link-grid {
   list-style: none;
   display: grid;
@@ -573,12 +573,12 @@ samp {
   margin: 0;
 }
 
-.slate-article .toctree-wrapper ul li,
+.slate-article .toctree-wrapper > ul > li,
 .ariuna-link-grid > * {
   margin: 0;
 }
 
-.slate-article .toctree-wrapper ul li > a,
+.slate-article .toctree-wrapper > ul > li > a,
 .ariuna-link-card {
   display: grid;
   gap: 0.35rem;
@@ -591,10 +591,27 @@ samp {
   color: var(--slate-color-text-primary);
 }
 
-.slate-article .toctree-wrapper ul li > a:hover,
+.slate-article .toctree-wrapper > ul > li > a:hover,
 .ariuna-link-card:hover {
   background: var(--slate-color-background-secondary);
   text-decoration: none;
+}
+
+/* Nested toctree children rendered inside a card: simple stacked list. */
+.slate-article .toctree-wrapper > ul ul {
+  list-style: disc;
+  display: block;
+  margin: var(--slate-space-2) 0 0;
+  padding-left: var(--slate-space-5);
+  font-size: var(--slate-font-size-small);
+}
+
+.slate-article .toctree-wrapper > ul ul li {
+  margin: 0.15rem 0;
+}
+
+.slate-article .toctree-wrapper > ul ul a {
+  color: var(--slate-color-text-link);
 }
 
 .ariuna-link-card__eyebrow {
