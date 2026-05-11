@@ -1,0 +1,183 @@
+{%- set titlesuffix = docstitle and (' | ' + docstitle|e) or '' -%}
+
+{%- macro script() -%}
+{%- for js in script_files -%}
+{{ js_tag(js) }}
+{%- endfor -%}
+{%- endmacro -%}
+
+{%- macro css() -%}
+{%- for css in css_files -%}
+{%- if css|attr("filename") -%}
+{{ css_tag(css) }}
+{%- else -%}
+<link rel="stylesheet" href="{{ pathto(css, 1)|e }}" type="text/css" />
+{%- endif -%}
+{%- endfor -%}
+{%- endmacro -%}
+
+{%- macro copyright_block() -%}
+{%- if copyright is iterable and copyright is not string -%}
+{%- for copyright_line in copyright -%}
+&#169; {{ copyright_line|e }}{%- if not loop.last %}<br />{% endif -%}
+{%- endfor -%}
+{%- else -%}
+&#169; {{ copyright|e }}
+{%- endif -%}
+{%- endmacro -%}
+
+<!DOCTYPE html>
+<html{% if language is not none %} lang="{{ language }}" {% endif %} data-content_root="{{ content_root }}">
+
+    <head>
+        <meta charset="{{ encoding }}" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        {{ metatags }}
+        <title>{{ title|striptags|e }}{{ titlesuffix }}</title>
+        {{ css() }}
+        {%- if pageurl %}
+        <link rel="canonical" href="{{ pageurl|e }}" />
+        {%- endif %}
+        {%- if favicon_url %}
+        <link rel="icon" href="{{ favicon_url|e }}" />
+        {%- endif %}
+        {%- if hasdoc('genindex') %}
+        <link rel="index" title="{{ _('Index') }}" href="{{ pathto('genindex') }}" />
+        {%- endif %}
+        {%- if hasdoc('search') %}
+        <link rel="search" title="{{ _('Search') }}" href="{{ pathto('search') }}" />
+        {%- endif %}
+        {%- if next %}
+        <link rel="next" title="{{ next.title|striptags|e }}" href="{{ next.link|e }}" />
+        {%- endif %}
+        {%- if prev %}
+        <link rel="prev" title="{{ prev.title|striptags|e }}" href="{{ prev.link|e }}" />
+        {%- endif %}
+        <script>
+            (function () {
+                try {
+                    var storedTheme = localStorage.getItem("slate-docs-theme");
+                    var resolvedTheme = storedTheme;
+                    if (!resolvedTheme) {
+                        resolvedTheme = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+                    }
+                    document.documentElement.dataset.theme = resolvedTheme;
+                } catch (error) {
+                    document.documentElement.dataset.theme = "light";
+                }
+            })();
+        </script>
+    </head>
+
+    <body class="slate-docs-body page-{{ pagename|replace('/', '-') }}">
+        <a class="slate-skip-link" href="#main-content">{{ _('Skip to content') }}</a>
+        <div class="slate-shell">
+            <button class="slate-overlay" type="button" data-nav-overlay tabindex="-1" aria-hidden="true"></button>
+
+            <aside class="slate-sidebar" id="slate-sidebar" aria-label="{{ _('Main navigation') }}">
+                <div class="slate-sidebar__inner">
+                    <a class="slate-brand" href="{{ pathto(root_doc)|e }}">
+                        {%- if logo_url %}
+                        <img class="slate-brand__logo" src="{{ logo_url|e }}" alt="{{ logo_alt|default(project)|e }}" />
+                        {%- endif %}
+                        <span class="slate-brand__eyebrow">{{ shorttitle|default(project)|e }}</span>
+                        <strong class="slate-brand__title">{{ project|e }}</strong>
+                    </a>
+
+                    {%- if hasdoc('search') %}
+                    <form class="slate-search" action="{{ pathto('search') }}" method="get">
+                        <label class="slate-search__label" for="slate-search-input">{{ _('Search') }}</label>
+                        <input id="slate-search-input" class="slate-search__input" type="search" name="q"
+                            placeholder="{{ _('Search docs') }}" />
+                        <input type="hidden" name="check_keywords" value="yes" />
+                        <input type="hidden" name="area" value="default" />
+                    </form>
+                    {%- endif %}
+
+                    <nav class="slate-nav" aria-label="{{ _('Primary') }}">
+                        {{ toctree(maxdepth=3, collapse=False, includehidden=True, titles_only=False) }}
+                    </nav>
+                </div>
+            </aside>
+
+            <div class="slate-main">
+                <header class="slate-topbar">
+                    <div class="slate-topbar__start">
+                        <button class="slate-icon-button slate-nav-toggle" type="button" data-nav-toggle
+                            aria-expanded="false" aria-controls="slate-sidebar">
+                            <span>{{ _('Menu') }}</span>
+                        </button>
+                        <nav class="slate-breadcrumbs" aria-label="{{ _('Breadcrumb') }}">
+                            <a href="{{ pathto(root_doc)|e }}">{{ shorttitle|default(project)|e }}</a>
+                            {%- for parent in parents %}
+                            <span class="slate-breadcrumbs__separator">/</span>
+                            <a href="{{ parent.link|e }}">{{ parent.title }}</a>
+                            {%- endfor %}
+                            {%- if title %}
+                            <span class="slate-breadcrumbs__separator">/</span>
+                            <span class="slate-breadcrumbs__current">{{ title|striptags|e }}</span>
+                            {%- endif %}
+                        </nav>
+                    </div>
+
+                    <div class="slate-topbar__end">
+                        {%- if last_updated %}
+                        <span class="slate-updated">{{ _('Updated') }} {{ last_updated }}</span>
+                        {%- endif %}
+                        <button class="slate-icon-button slate-theme-toggle" type="button" data-theme-toggle
+                            aria-label="{{ _('Toggle color theme') }}">
+                            <span data-theme-label>{{ _('Dark mode') }}</span>
+                        </button>
+                    </div>
+                </header>
+
+                <div class="slate-main__inner">
+                    <main id="main-content" class="slate-content{% if toc %} slate-content--with-toc{% endif %}"
+                        role="main">
+                        <article class="slate-article">
+                            {% block body %}{% endblock %}
+
+                            {%- if prev or next %}
+                            <nav class="slate-page-nav" aria-label="{{ _('Page navigation') }}">
+                                {%- if prev %}
+                                <a class="slate-page-nav__item" href="{{ prev.link|e }}">
+                                    <span class="slate-page-nav__label">{{ _('Previous') }}</span>
+                                    <strong>{{ prev.title }}</strong>
+                                </a>
+                                {%- endif %}
+                                {%- if next %}
+                                <a class="slate-page-nav__item slate-page-nav__item--next" href="{{ next.link|e }}">
+                                    <span class="slate-page-nav__label">{{ _('Next') }}</span>
+                                    <strong>{{ next.title }}</strong>
+                                </a>
+                                {%- endif %}
+                            </nav>
+                            {%- endif %}
+                        </article>
+
+                        {%- if toc %}
+                        <aside class="slate-toc" aria-label="{{ _('On this page') }}">
+                            <div class="slate-toc__inner">
+                                <p class="slate-toc__title">{{ _('On this page') }}</p>
+                                {{ toc }}
+                            </div>
+                        </aside>
+                        {%- endif %}
+                    </main>
+                </div>
+
+                <footer class="slate-footer" role="contentinfo">
+                    <div>
+                        {{ copyright_block() }}
+                    </div>
+                    {%- if show_sphinx %}
+                    <div>{{ _('Built with Sphinx') }} {{ sphinx_version|e }}</div>
+                    {%- endif %}
+                </footer>
+            </div>
+        </div>
+
+        {{ script() }}
+    </body>
+
+    </html>
