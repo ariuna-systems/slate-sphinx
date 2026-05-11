@@ -597,21 +597,10 @@ samp {
   text-decoration: none;
 }
 
-/* Nested toctree children rendered inside a card: simple stacked list. */
+/* Hide nested toctree children inside the article — the sidebar already
+   provides the full tree and the cards should stay self-contained. */
 .slate-article .toctree-wrapper > ul ul {
-  list-style: disc;
-  display: block;
-  margin: var(--slate-space-2) 0 0;
-  padding-left: var(--slate-space-5);
-  font-size: var(--slate-font-size-small);
-}
-
-.slate-article .toctree-wrapper > ul ul li {
-  margin: 0.15rem 0;
-}
-
-.slate-article .toctree-wrapper > ul ul a {
-  color: var(--slate-color-text-link);
+  display: none;
 }
 
 .ariuna-link-card__eyebrow {
