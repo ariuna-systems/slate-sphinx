@@ -1,8 +1,6 @@
 # Slate Sphinx Theme
 
-Reusable Sphinx theme package for documentation sites.
-
-The theme applies brand tokens, and is designed to be portable to other Sphinx projects without copying project-specific templates into the docs source tree.
+Sphinx theme package for documentation sites.
 
 ## Usage
 
