@@ -13,37 +13,70 @@
 import os
 import sys
 
-sys.path.insert(0, os.path.abspath("../src"))
+# Make the slate.sphinx theme importable so autodoc/autosummary can document it.
 sys.path.insert(0, os.path.abspath("../../src"))
+# Plus the example demo `package` used by the autodoc showcase pages.
+sys.path.insert(0, os.path.abspath("../src"))
 
 
 # -- Project information -----------------------------------------------------
 
 project = "Slate Sphinx Theme"
-copyright = "2026, David Landa"
-author = "David Landa"
+copyright = "2026, Ariuna Systems"
+author = "Ariuna Systems"
+
+try:
+    from slate.sphinx import __version__ as release  # noqa: E402
+except Exception:
+    release = ""
+version = release
 
 
 # -- General configuration ---------------------------------------------------
 
-# Add any Sphinx extension module names here, as strings. They can be
-# extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
-# ones.
+# Note on extension order: `sphinx.ext.autodoc` must be loaded before
+# `sphinx_autodoc_typehints`, which connects to autodoc-only events.
 extensions = [
-    "sphinx.ext.todo",
-    "sphinx.ext.autodoc",  # Core library for html generation from docstrings.
+    "sphinx.ext.autodoc",
+    "sphinx.ext.autosummary",
     "sphinx.ext.viewcode",
-    "sphinx.ext.autosummary",  # Create neat summary tables.
-    "sphinx_autodoc_typehints",
-    "sphinx.ext.githubpages",
+    "sphinx.ext.todo",
     "sphinx.ext.mathjax",
-    "myst_parser",
+    "sphinx.ext.githubpages",
+    "sphinx_autodoc_typehints",
+    "myst_nb",
     "slate.sphinx",
 ]
 
 master_doc = "index"
 
 autosummary_generate = True  # Turn on sphinx.ext.autosummary
+
+# -- MyST --------------------------------------------------------------------
+# Enable Markdown math: `$...$` for inline and `$$...$$` for display, plus
+# LaTeX `\begin{equation}...\end{equation}` blocks via amsmath.
+myst_enable_extensions = [
+    "dollarmath",
+    "amsmath",
+]
+
+# -- MyST-NB -----------------------------------------------------------------
+# Render `.ipynb` notebooks as documentation pages. Set to "off" to use the
+# notebook's stored outputs as-is (no kernel needed at build time). Use
+# "auto" or "force" to re-execute notebooks during the Sphinx build.
+nb_execution_mode = "off"
+
+# -- MathJax -----------------------------------------------------------------
+# Enable single-dollar inline math delimiters (e.g. $\sin(x)$) in addition to
+# the default `\(...\)` and `$$...$$`. Sphinx's mathjax extension itself only
+# emits `\(...\)`, but MyST math and hand-written `$...$` need this config.
+mathjax3_config = {
+    "tex": {
+        "inlineMath": [["\\(", "\\)"], ["$", "$"]],
+        "displayMath": [["\\[", "\\]"], ["$$", "$$"]],
+        "processEscapes": True,
+    },
+}
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]

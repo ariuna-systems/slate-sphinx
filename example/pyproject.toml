@@ -15,6 +15,7 @@ docs = [
     "sphinx-autobuild",
     "sphinx-autodoc-typehints",
     "myst-parser",
+    "myst-nb",
     "slate-sphinx-theme",
 ]
 dev = [

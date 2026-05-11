@@ -1,52 +1,44 @@
-.. demo-sphinx documentation master file, created by
-   sphinx-quickstart on Thu Jun 30 10:49:58 2022.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+Slate Sphinx Theme
+==================
 
-Welcome to Slate Sphinx Theme!
-==============================
+A clean, modern Sphinx theme with a sidebar layout, dark mode, and full support
+for autodoc, MyST Markdown, Jupyter notebooks, and MathJax.
 
-This tutorial was written for members of the Slate documentation workspace to help us document our projects.
+.. image:: https://github.com/ariuna-systems/slate-sphinx/actions/workflows/pages.yml/badge.svg
+   :target: https://github.com/ariuna-systems/slate-sphinx/actions/workflows/pages.yml
+   :alt: Build status
 
-Some links for later use.
-
-* https://sphinx-themes.org/sample-sites/sphinx-rtd-theme/
-* https://github.com/barentsen/amunra-sphinx-theme
-* https://docs.lightkurve.org/development/index.html
-
-.. 
-   sphinx-autobuild .\docs .\docs\_build --port 5000
+This site is built **using the theme itself**, so every page is also a live
+demo of what the theme looks like.
 
 .. toctree::
    :maxdepth: 2
-   :caption: Introduction 
-   
+   :caption: Getting started
+
+   installation
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Content features
+
    mathjax
+   mathjax_md
+   notebooks/Example
    glossary
 
 .. toctree::
    :maxdepth: 2
-   :caption: Document Python project
+   :caption: Autodoc showcase
 
    part1/index
+   part2/page1.1
+   part2/page1.2
 
 .. toctree::
    :maxdepth: 2
-   :caption: Document JavaScript project
+   :caption: API reference
 
-   part2/page1.1.md
-   part2/page1.2.md
-
-.. autosummary::
-   :toctree: _autosummary
-   :recursive:
-
-   package
-
-Usefull extensions
-==================
-
-...
+   api
 
 Indices and tables
 ==================
@@ -54,3 +46,4 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
+

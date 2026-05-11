@@ -102,6 +102,10 @@ a {
   text-decoration: none;
 }
 
+a:visited {
+  color: var(--slate-color-text-link);
+}
+
 a:hover {
   text-decoration: underline;
 }
