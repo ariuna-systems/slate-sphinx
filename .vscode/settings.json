@@ -1,3 +1,7 @@
 {
-    "python.formatting.provider": "black"
+    "python.formatting.provider": "black",
+    "workbench.colorCustomizations": {
+        "titleBar.activeBackground": "#513203ff",
+        "titleBar.inactiveBackground": "#3d2f1aff"
+    }
 }
