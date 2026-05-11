@@ -1,11 +1,11 @@
-# sphinx-guide
+# slate-sphinx-example
 
 Example documentation site for the Slate Sphinx theme.
 
 Build and publish documentation to `gh-pages` branch.
 
-```
-pip install sphinx-autobuild
+```shell
+uv pip install sphinx-autobuild
 ```
 
 ```shell

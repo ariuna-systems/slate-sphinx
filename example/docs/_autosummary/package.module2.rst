@@ -4,7 +4,6 @@ package.module2
 .. automodule:: package.module2
 
    
-   
    .. rubric:: Module Attributes
 
    .. autosummary::
@@ -12,19 +11,11 @@ package.module2
       CustomTypeAlias
       CustomTypeVariable
    
-   
-
-   
-   
    .. rubric:: Functions
 
    .. autosummary::
    
       function
-   
-   
-
-   
    
    .. rubric:: Classes
 
@@ -32,17 +23,9 @@ package.module2
    
       Example
    
-   
-
-   
-   
    .. rubric:: Exceptions
 
    .. autosummary::
    
       Error
    
-   
-
-
-

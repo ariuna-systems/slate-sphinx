@@ -1,7 +1,7 @@
-package.module1.module1.module1
-===============================
+package.module1.module2
+=======================
 
-.. automodule:: package.module1.module1.module1
+.. automodule:: package.module1.module2
 
    
    .. rubric:: Functions

@@ -6,15 +6,22 @@ Sphinx theme package for documentation sites.
 
 ## Usage
 
-For local development use following commands.
+Install the theme directly from GitHub:
 
-1. Add `sphinx-template/src` to `sys.path` in `conf.py`.
-2. Enable the `slate.sphinx` extension.
-3. Set `html_theme = "slate-sphinx-theme"`.
+```shell
+uv pip install "git+https://github.com/ariuna-systems/slate-sphinx.git"
+```
+
+Then in your Sphinx project's `conf.py`:
+
+1. Add `"slate.sphinx"` to `extensions`.
+2. Set `html_theme = "slate-sphinx-theme"`.
+
+See [example/docs/conf.py](example/docs/conf.py) for a complete configuration.
 
 ## Packaging
 
-Install the package locally or from a source archive.
+Install the package locally from a source checkout:
 
 ```shell
 uv pip install .
@@ -22,5 +29,5 @@ uv pip install .
 
 ## References
 
-- <https://www.sphinx-doc.org/en/master/development/theming.html>
 - <https://www.sphinx-doc.org/en/master/usage/theming.html>
+- <https://www.sphinx-doc.org/en/master/development/theming.html>

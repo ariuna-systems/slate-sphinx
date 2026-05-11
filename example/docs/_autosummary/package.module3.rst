@@ -4,20 +4,11 @@ package.module3
 .. automodule:: package.module3
 
    
-   
-   
-
-   
-   
    .. rubric:: Functions
 
    .. autosummary::
    
       example
-   
-   
-
-   
    
    .. rubric:: Classes
 
@@ -25,11 +16,3 @@ package.module3
    
       Example
    
-   
-
-   
-   
-   
-
-
-

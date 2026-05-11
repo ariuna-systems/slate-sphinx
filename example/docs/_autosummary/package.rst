@@ -4,30 +4,12 @@
 .. automodule:: package
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-
 .. rubric:: Modules
 
 .. autosummary::
    :toctree:
    :recursive:
 
-   package.module1
-   package.module2
-   package.module3
-
+   module1
+   module2
+   module3
