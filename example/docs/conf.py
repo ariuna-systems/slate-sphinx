@@ -19,9 +19,9 @@ sys.path.insert(0, os.path.abspath("../../src"))
 
 # -- Project information -----------------------------------------------------
 
-project = "Sphinx demo"
-copyright = "2022, Jon Doe"
-author = "Jon Doe"
+project = "Slate Sphinx Theme"
+copyright = "2026, David Landa"
+author = "David Landa"
 
 
 # -- General configuration ---------------------------------------------------

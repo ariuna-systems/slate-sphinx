@@ -3,8 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to sphinx-tutorial!
-===========================
+Welcome to Slate Sphinx Theme!
+==============================
 
 This tutorial was written for members of the Slate documentation workspace to help us document our projects.
 
